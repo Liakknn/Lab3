@@ -24,8 +24,26 @@ public class ChildrenBook extends Book implements IBook{
         this.min = min;
     }
 
+    public boolean equals(Object object) {
+        if(super.equals(object)){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode(){
+        return getName().hashCode()^getAuthor().hashCode();
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    @Override
     public String toString() {
-        String out = "";
-        return out = "Автор: " + getAuthor() + " , " + "Название книги: " + getName() + " , " + "Стоимость: " + getRub() + " , " + "Год издания: " + getYear() + " , " + "Минимальный возраст: " + getMin();
+        StringBuilder out = new StringBuilder("Автор: " + getAuthor() + " , " + "Название книги: " + getName() + " , " + "Год издания: " + getYear() + " , " + "Минимальный возраст: " + min);
+        return out.toString();
     }
 }

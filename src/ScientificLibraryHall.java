@@ -38,6 +38,14 @@ public class ScientificLibraryHall implements IHall{
         }
     }
 
+    public String printBook() {
+        String out = "";
+        for (int i = 0; i < list.getSize(); i++) {
+            out += list.get(i).getData() + "\n";
+        }
+        return out;
+    }
+
     public double price() {
         double sum = 0;
         for (int i = 0; i < list.getSize(); i++) {
@@ -93,5 +101,27 @@ public class ScientificLibraryHall implements IHall{
             arr[i]=list.get(i).getData();
         }
         return arr;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder out = new StringBuilder(getClass() + " Количество книг: " + list.getSize() + "\n" + "Книги: "+ "\n" + printBook() );
+        return out.toString();
+    }
+//  не доделан
+    public boolean equals(Object object){
+        boolean t=false;
+        for (int i = 0; i <((IHall)object).getBookCount(); i++) {
+            if((list.get(i).getData()).equals(((IHall)object).getBook(i))){
+                t=true;
+            }else{
+                t=false;
+                break;
+            }
+        }
+        if (object.getClass() == this.getClass() &&((IHall)object).getBookCount()==list.getSize()&&t){
+            return true;
+        }
+        return false;
     }
 }

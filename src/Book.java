@@ -1,4 +1,4 @@
-public class Book implements IBook{
+public class Book implements IBook {
     private String author;
     private String name;
     private Double rub;
@@ -44,8 +44,8 @@ public class Book implements IBook{
         return rub;
     }
 
-    public void setRub(double rub) throws InvalidBookPriceException{
-        if(rub <= 0) {
+    public void setRub(double rub) throws InvalidBookPriceException {
+        if (rub <= 0) {
             throw new InvalidBookPriceException();
         }
         this.rub = rub;
@@ -59,7 +59,28 @@ public class Book implements IBook{
         this.year = year;
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if(object.getClass() == this.getClass() && author == ((IBook) object).getAuthor() && name == ((IBook) object).getName()
+                && rub == ((IBook) object).getRub() && year == ((IBook) object).getYear()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode(){
+        return name.hashCode()^author.hashCode();
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    @Override
     public String toString() {
-        return "Автор: " + getAuthor() + " , " + "Название книги: " + getName() + " , " + "Стоимость: " + getRub() + " , " + "Год издания: " + getYear();
+        StringBuilder out = new StringBuilder("Автор: " + author + " , " + "Название книги: " + name + " , " + " , " + "Год издания: " + year);
+        return out.toString();
     }
 }

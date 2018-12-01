@@ -101,6 +101,14 @@ public class ChildrenLibrary implements ILibrary{
         }
     }
 
+    public String  printHalls() {
+        String out = "";
+        for (int i = 0; i < hall.length; i++) {
+            out += hall[i].toString();
+        }
+        return out;
+    }
+
     public void changeHall(int index, IHall newHall) throws HallIndexOutOfBoundsException {
         if (index < 0 || index > hall.length) {
             throw new HallIndexOutOfBoundsException();
@@ -162,8 +170,6 @@ public class ChildrenLibrary implements ILibrary{
 
     public IBook getBestBook() {
         IBook[] arr = new IBook[hall.length];
-//        int indexOfMax = 0;
-//        int indexOfMin = 0;
         for (int i = 0; i < hall.length; i++) {
             arr[i] = hall[i].getBestBook();
         }
@@ -176,19 +182,11 @@ public class ChildrenLibrary implements ILibrary{
             }
         }
         return arr[index];
+    }
 
-//        for (int i = 1; i < arr.length; i++) {
-//            if (arr[i].getRub() > (arr[indexOfMax].getRub())) {
-//                indexOfMax = i;
-//            } else if (arr[i].getRub() < arr[indexOfMin].getRub()) {
-//                indexOfMin = i;
-//            }
-//        }
-//        for (int i = 0; i < arr.length; i++) {
-//            if (arr[i].getRub() == arr[indexOfMax].getRub()) {
-//                return arr[i];
-//            }
-//        }
-//        return new ChildrenBook();
+    @Override
+    public String toString() {
+        StringBuilder out = new StringBuilder("Количество залов: " + hall.length + "\n" + "Залы: "+ "\n" + printHalls());
+        return out.toString();
     }
 }

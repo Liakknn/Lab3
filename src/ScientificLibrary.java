@@ -113,6 +113,15 @@ public class ScientificLibrary implements ILibrary {
         }
     }
 
+    public String  printHalls() {
+        String out = "";
+        for (int i = 0; i < halls.getSize(); i++) {
+            out += halls.get(i).toString();
+        }
+        return out;
+    }
+
+
     public void changeHall(int index, IHall newHall) throws HallIndexOutOfBoundsException {
         if(index < 0 || index > halls.getSize()) {
             throw new HallIndexOutOfBoundsException();
@@ -192,5 +201,11 @@ public class ScientificLibrary implements ILibrary {
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder out = new StringBuilder("Количество залов: " + halls.getSize() + "\n" + "Залы: "+ "\n" + printHalls());
+        return out.toString();
     }
 }

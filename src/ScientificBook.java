@@ -27,8 +27,26 @@ public class ScientificBook extends Book implements IBook{
         this.index = index;
     }
 
+    @Override
     public String toString() {
-        String out = "";
-        return out = "Автор: " + getAuthor() + ", " + "Название книги: " + getName() + ", " + "Стоимость: " + getRub() + ", " + "Год издания: " + getYear() + ", " + "Индекс цитируемости: " + getIndex();
+        StringBuilder out = new StringBuilder("Автор: " + getAuthor() + ", " + "Название книги: " + getName() + ", " + "Год издания: " + getYear() + ", " + "Индекс цитируемости: " + index);
+        return out.toString();
+    }
+
+    public boolean equals(Object object) {
+        if(super.equals(object)){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode(){
+        return getName().hashCode()^getAuthor().hashCode();
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

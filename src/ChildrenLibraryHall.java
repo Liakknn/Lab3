@@ -48,6 +48,14 @@ public class ChildrenLibraryHall implements IHall{
         this.mas = mas;
     }
 
+    public String printBook() {
+        String out = "";
+        for (int i = 0; i < mas.length; i++) {
+            out += mas[i].toString() + "\n";
+        }
+        return out;
+    }
+
     public void printName() {
         for (int i = 0; i < mas.length; i++)
             System.out.println("Название книги: " + mas[i].getName());
@@ -119,20 +127,27 @@ public class ChildrenLibraryHall implements IHall{
         }
         return mas[index];
 
-//        int indexOfMax = 0;
-//        int indexOfMin = 0;
-//        for (int i = 1; i < mas.length; i++) {
-//            if (mas[i].getRub() > (mas[indexOfMax].getRub())) {
-//                indexOfMax = i;
-//            } else if (mas[i].getRub() < mas[indexOfMin].getRub()) {
-//                indexOfMin = i;
-//            }
-//        }
-//        for (int i = 0; i < mas.length; i++) {
-//            if (mas[i].getRub() == mas[indexOfMax].getRub()) {
-//                return mas[i];
-//            }
-//        }
-//        return new ChildrenBook();
+    }
+
+        @Override
+    public String toString() {
+        StringBuilder out = new StringBuilder(getClass() + " Количество книг: " + mas.length + "\n" + "Книги: "+ "\n" + printBook() );
+        return out.toString();
+    }
+
+    public boolean equals(Object object){
+        boolean t=false;
+        for (int i = 0; i <((IHall)object).getBookCount(); i++) {
+            if(mas[i].equals(((IHall)object).getBook(i))){
+                t=true;
+            }else{
+                t=false;
+                break;
+            }
+        }
+        if (object.getClass() == this.getClass() &&((IHall)object).getBookCount()==mas.length&&t){
+            return true;
+        }
+        return false;
     }
 }
